@@ -11,6 +11,6 @@ data class Note(
     val id: Int,
     @ColumnInfo("name")
     val name: String,
-    @ColumnInfo("descr")
-    val description: String
+    @ColumnInfo("content")
+    val content: String
 )
