@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class UpdateUseCaseImpl @Inject constructor(
     private val noteRepository: NoteRepository
-): UpdateUseCase {
+) : UpdateUseCase {
     override suspend fun invoke(note: Note) =
         noteRepository.update(note)
 }
