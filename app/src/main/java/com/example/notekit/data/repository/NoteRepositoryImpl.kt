@@ -1,6 +1,6 @@
 package com.example.notekit.data.repository
 
-import com.example.notekit.data.source.local.Note
+import com.example.notekit.domain.model.Note
 import com.example.notekit.data.source.local.NoteDao
 import com.example.notekit.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
