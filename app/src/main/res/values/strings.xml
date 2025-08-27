@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NoteKit</string>
+    <string name="notes">Notes</string>
+    <string name="no_data_yet">No data yet :(</string>
+    <string name="tap_plus_btn_add_note">Tap the + button to add a note</string>
+    <string name="add_note">Add Note</string>
 </resources>
