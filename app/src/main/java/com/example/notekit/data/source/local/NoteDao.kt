@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.notekit.domain.model.Note
+import com.example.notekit.data.source.local.Note
 import kotlinx.coroutines.flow.Flow
 
 @Dao
