@@ -1,30 +1,27 @@
 package com.example.notekit.data.repository
 
-import com.example.notekit.data.source.local.Note
-import com.example.notekit.data.source.local.NoteDao
+import com.example.notekit.data.source.local.LocalDataSource
+import com.example.notekit.domain.model.Note
 import com.example.notekit.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class NoteRepositoryImpl @Inject constructor(
-    private val noteDao: NoteDao
+    private val localDataSource: LocalDataSource
 ): NoteRepository {
 
     override suspend fun insert(note: Note) =
-        noteDao.insert(note)
+        localDataSource.insert(note)
 
     override fun getAll(): Flow<List<Note>> =
-        noteDao.getAll()
+        localDataSource.getAll()
 
     override fun getById(id: Int): Flow<Note> =
-        noteDao.getById(id)
+        localDataSource.getById(id)
 
     override suspend fun update(note: Note) =
-        noteDao.update(note)
+        localDataSource.update(note)
 
     override suspend fun delete(note: Note) =
-        noteDao.delete(note)
-
-    override suspend fun deleteById(id: Int) =
-        noteDao.deleteById(id)
+        localDataSource.delete(note)
 }
