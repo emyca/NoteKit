@@ -14,6 +14,4 @@ interface LocalDataSource {
     suspend fun update(note: Note)
 
     suspend fun delete(note: Note)
-
-    suspend fun deleteById(id: Int)
 }
