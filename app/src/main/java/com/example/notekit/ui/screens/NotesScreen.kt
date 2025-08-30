@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notekit.R
-import com.example.notekit.data.source.local.Note
+import com.example.notekit.domain.model.Note
 import com.example.notekit.ui.viewmodel.NotesScreenUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -117,7 +117,6 @@ private fun NotesScreenContent(
     onNoteClick: (String) -> Unit
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
-        // itemsIndexed may be used for UI-tests
         itemsIndexed(notes) { index, note ->
             Spacer(modifier = Modifier.height(24.dp))
             NoteItem(
