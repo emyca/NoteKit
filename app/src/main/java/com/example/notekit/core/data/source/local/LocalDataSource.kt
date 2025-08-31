@@ -1,6 +1,6 @@
-package com.example.notekit.data.source.local
+package com.example.notekit.core.data.source.local
 
-import com.example.notekit.domain.model.Note
+import com.example.notekit.core.domain.model.Note
 import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {

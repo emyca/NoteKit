@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notekit.R
-import com.example.notekit.domain.model.Note
+import com.example.notekit.core.domain.model.Note
 import com.example.notekit.ui.viewmodel.NotesScreenUiState
 
 @OptIn(ExperimentalMaterial3Api::class)

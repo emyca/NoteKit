@@ -1,8 +1,8 @@
-package com.example.notekit.data.repository
+package com.example.notekit.core.data.repository
 
-import com.example.notekit.data.source.local.LocalDataSource
-import com.example.notekit.domain.model.Note
-import com.example.notekit.domain.repository.NoteRepository
+import com.example.notekit.core.data.source.local.LocalDataSource
+import com.example.notekit.core.domain.model.Note
+import com.example.notekit.core.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

@@ -1,7 +1,7 @@
-package com.example.notekit.data.mapper
+package com.example.notekit.core.data.mapper
 
-import com.example.notekit.data.source.local.model.NoteEntity
-import com.example.notekit.domain.model.Note
+import com.example.notekit.core.data.source.local.model.NoteEntity
+import com.example.notekit.core.domain.model.Note
 
 fun NoteEntity.toNote() = Note(id, name, content)
 

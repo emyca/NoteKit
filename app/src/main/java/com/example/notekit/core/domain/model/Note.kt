@@ -1,4 +1,4 @@
-package com.example.notekit.domain.model
+package com.example.notekit.core.domain.model
 
 data class Note(
     val id: Int,

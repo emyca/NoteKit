@@ -1,6 +1,6 @@
 package com.example.notekit.domain.usecase.impl
 
-import com.example.notekit.domain.repository.NoteRepository
+import com.example.notekit.core.domain.repository.NoteRepository
 import com.example.notekit.domain.usecase.GetAllUseCase
 import javax.inject.Inject
 

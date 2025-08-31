@@ -1,9 +1,9 @@
-package com.example.notekit.data.source.local
+package com.example.notekit.core.data.source.local
 
 import com.example.notekit.core.data.mapper.toNote
 import com.example.notekit.core.data.mapper.toNoteEntity
-import com.example.notekit.data.source.local.dao.NoteDao
-import com.example.notekit.domain.model.Note
+import com.example.notekit.core.data.source.local.dao.NoteDao
+import com.example.notekit.core.domain.model.Note
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

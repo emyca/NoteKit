@@ -1,4 +1,4 @@
-package com.example.notekit.data.source.local.model
+package com.example.notekit.core.data.source.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
