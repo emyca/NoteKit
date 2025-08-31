@@ -2,7 +2,7 @@ package com.example.notekit.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.notekit.core.domain.model.Note
-import com.example.notekit.domain.usecase.GetAllUseCase
+import com.example.notekit.home.domain.usecase.GetAllUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
