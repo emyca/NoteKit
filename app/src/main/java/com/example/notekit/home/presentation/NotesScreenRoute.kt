@@ -1,0 +1,25 @@
+package com.example.notekit.home.presentation
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+
+@Composable
+internal fun NotesScreenRoute(
+    modifier: Modifier = Modifier,
+    viewModel: NotesViewModel = hiltViewModel(),
+    navigateToAddNoteScreen: () -> Unit,
+    navigateToDetailNoteScreen: (String) -> Unit
+) {
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    NotesScreen(
+        modifier = modifier,
+        uiState = uiState,
+        onAddItemFABClick = navigateToAddNoteScreen,
+        onNoteClick = navigateToDetailNoteScreen
+    )
+}
