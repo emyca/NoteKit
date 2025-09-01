@@ -12,18 +12,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,40 +27,29 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notekit.R
+import com.example.notekit.core.composables.AddItemFAB
+import com.example.notekit.core.composables.AppTopBar
 import com.example.notekit.core.domain.model.Note
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun NotesScreen(
     modifier: Modifier = Modifier,
-    onAddNote: () -> Unit = {},
     uiState: NotesScreenUiState,
+    onAddItemFABClick: () -> Unit,
     onNoteClick: (String) -> Unit
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(R.string.notes),
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                },
+            AppTopBar(
+                modifier = Modifier.shadow(4.dp),
+                title = stringResource(R.string.app_name)
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = onAddNote,
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = stringResource(R.string.add_note)
-                )
+            AddItemFAB {
+                onAddItemFABClick()
             }
         }
     ) { paddingValues ->
@@ -73,7 +58,7 @@ internal fun NotesScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            when(uiState) {
+            when (uiState) {
                 is NotesScreenUiState.Empty -> NotesScreenEmpty()
                 is NotesScreenUiState.Content -> NotesScreenContent(
                     notes = uiState.notes,
