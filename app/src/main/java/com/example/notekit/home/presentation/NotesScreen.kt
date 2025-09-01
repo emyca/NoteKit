@@ -1,4 +1,4 @@
-package com.example.notekit.ui.screens
+package com.example.notekit.home.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notekit.R
 import com.example.notekit.core.domain.model.Note
-import com.example.notekit.ui.viewmodel.NotesScreenUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

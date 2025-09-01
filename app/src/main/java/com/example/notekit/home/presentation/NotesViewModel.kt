@@ -1,4 +1,4 @@
-package com.example.notekit.ui.viewmodel
+package com.example.notekit.home.presentation
 
 import androidx.lifecycle.ViewModel
 import com.example.notekit.core.domain.model.Note
