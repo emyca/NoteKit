@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notekit.R
@@ -26,6 +27,7 @@ import com.example.notekit.core.composables.AddItemFAB
 import com.example.notekit.core.composables.AppTopBar
 import com.example.notekit.core.composables.NoteItem
 import com.example.notekit.core.domain.model.Note
+import com.example.notekit.ui.theme.NoteKitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -76,14 +78,14 @@ private fun NotesScreenEmpty(modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = stringResource(R.string.no_data_yet),
-                fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                fontSize = 24.sp,
+                color = MaterialTheme.colorScheme.error
             )
             Spacer(modifier = modifier.height(8.dp))
             Text(
                 text = stringResource(R.string.tap_plus_btn_add_note),
-                fontSize = 14.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
         }
@@ -106,5 +108,30 @@ private fun NotesScreenContent(
                 title = note.name
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun NotesScreenEmptyPreview() {
+    NoteKitTheme(dynamicColor = false) {
+        NotesScreenEmpty()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun NotesScreenContentPreview() {
+    val notes = listOf(
+        Note(1, "Alfa", "Info alfa"),
+        Note(2, "Beta", "Info beta"),
+        Note(3, "Gamma", "Info gamma"),
+        Note(4, "Epsilon", "Info epsilon")
+    )
+    NoteKitTheme(dynamicColor = false) {
+        NotesScreenContent(
+            notes = notes,
+            onNoteClick = {}
+        )
     }
 }
