@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun AppTopBar(
     modifier: Modifier = Modifier,
-    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
+    containerColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     titleContentColor: Color = MaterialTheme.colorScheme.onPrimary,
     title: String
 ) {
