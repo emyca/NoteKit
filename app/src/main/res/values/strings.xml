@@ -9,4 +9,6 @@
     <string name="update_top_bar_title">Update</string>
     <string name="name_text_field_label">Name</string>
     <string name="content_text_field_label">Content</string>
+    <string name="save_button_text">Save</string>
+    <string name="add_data_toast_text">Add data!</string>
 </resources>
