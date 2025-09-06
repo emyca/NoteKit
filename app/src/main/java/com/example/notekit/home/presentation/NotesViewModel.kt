@@ -45,7 +45,7 @@ internal class NotesViewModel @Inject constructor(
             else NotesScreenUiState.Empty
         }.stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(3000),
+            started = SharingStarted.WhileSubscribed(5000),
             initialValue = NotesScreenUiState.Empty
         )
 
