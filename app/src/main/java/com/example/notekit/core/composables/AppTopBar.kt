@@ -8,6 +8,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.notekit.ui.theme.NoteKitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,4 +27,17 @@ fun AppTopBar(
             containerColor = containerColor
         )
     )
+}
+
+@Preview
+@Composable
+private fun AppTopBarPreview() {
+    NoteKitTheme(dynamicColor = false) {
+        AppTopBar(
+            modifier = Modifier,
+            containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.onPrimary,
+            title = "Note Kit"
+        )
+    }
 }
