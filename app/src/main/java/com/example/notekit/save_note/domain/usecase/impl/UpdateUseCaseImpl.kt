@@ -1,8 +1,8 @@
-package com.example.notekit.domain.usecase.impl
+package com.example.notekit.save_note.domain.usecase.impl
 
 import com.example.notekit.core.domain.model.Note
 import com.example.notekit.core.domain.repository.NoteRepository
-import com.example.notekit.domain.usecase.UpdateUseCase
+import com.example.notekit.save_note.domain.usecase.UpdateUseCase
 import javax.inject.Inject
 
 class UpdateUseCaseImpl @Inject constructor(
