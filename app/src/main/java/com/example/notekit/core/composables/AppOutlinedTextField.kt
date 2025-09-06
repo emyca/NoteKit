@@ -47,7 +47,7 @@ fun AppOutlinedTextField(
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewAppOutlinedTextField() {
+private fun AppOutlinedTextFieldPreview() {
     NoteKitTheme(dynamicColor = false) {
         AppOutlinedTextField(
             value = "My info",
