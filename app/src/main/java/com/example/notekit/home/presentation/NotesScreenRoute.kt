@@ -10,8 +10,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 internal fun NotesScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: NotesViewModel = hiltViewModel(),
-    navigateToAddNoteScreen: () -> Unit,
-    navigateToDetailNoteScreen: (String) -> Unit
+    navigateToInsertNote: () -> Unit,
+    navigateToUpdateNote: (String) -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -19,7 +19,7 @@ internal fun NotesScreenRoute(
     NotesScreen(
         modifier = modifier,
         uiState = uiState,
-        onAddItemFABClick = navigateToAddNoteScreen,
-        onNoteClick = navigateToDetailNoteScreen
+        onAddItemFABClick = navigateToInsertNote,
+        onNoteClick = navigateToUpdateNote
     )
 }
