@@ -27,25 +27,21 @@ import com.example.notekit.core.composables.AppTopBar
 internal fun SaveNoteScreen(
     modifier: Modifier = Modifier,
     uiState: SaveNoteUiState,
-    noteId: Int?,
+    topBarTitle: Int?,
     onSaveButtonClick: () -> Unit,
     navigateToNotesScreen: () -> Unit,
     onNoteNameChanged: (String) -> Unit,
     onNoteContentChanged: (String) -> Unit,
 ) {
     Scaffold(
-        modifier = modifier.fillMaxSize().imePadding(),
-        topBar = {
-            AppTopBar(
-                title =
-                    if (noteId != null)
-                        stringResource(R.string.update_top_bar_title)
-                    else stringResource(R.string.insert_top_bar_title)
-            )
-        }
+        modifier = modifier
+            .fillMaxSize()
+            .imePadding(),
+        topBar = { AppTopBar(title = stringResource(topBarTitle!!)) }
     ) { paddingValues ->
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .padding(paddingValues),
             contentAlignment = Alignment.Center
         ) {
@@ -76,11 +72,14 @@ private fun NoteContent(
     val context = LocalContext.current
 
     Column(
-        modifier = modifier.fillMaxSize().padding(16.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         AppOutlinedTextField(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(top = 36.dp),
             value = name,
             labelText = stringResource(id = R.string.name_text_field_label),
@@ -131,7 +130,7 @@ private fun SaveNoteScreenPreview() {
 
     SaveNoteScreen(
         uiState = uiState,
-        noteId = 1,
+        topBarTitle = R.string.insert_top_bar_title,
         onSaveButtonClick = {},
         navigateToNotesScreen = {},
         onNoteNameChanged = {},
