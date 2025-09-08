@@ -7,6 +7,7 @@ import com.example.notekit.core.domain.model.Note
 import com.example.notekit.save_note.domain.usecase.GetByIdUseCase
 import com.example.notekit.save_note.domain.usecase.InsertUseCase
 import com.example.notekit.save_note.domain.usecase.UpdateUseCase
+import com.example.notekit.save_note.presentation.navigation.NOTE_ID_ARG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,8 +39,7 @@ internal class SaveNoteViewModel @Inject constructor(
     private val getByIdUseCase: GetByIdUseCase
 ) : ViewModel() {
 
-    // TODO: "NOTE_ID_ARG" to constat def
-    private val noteId: String? = savedStateHandle["NOTE_ID_ARG"]
+    private val noteId: String? = savedStateHandle[NOTE_ID_ARG]
 
     init {
         if (noteId != null) loadNote(noteId = noteId.toInt())
