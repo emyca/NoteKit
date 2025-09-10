@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.notekit.core.domain.model.Note
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,10 +36,8 @@ internal fun NoteDetailsScreen(
     modifier: Modifier = Modifier,
     uiState: NoteDetailsUiState,
     onIconArrowBackClick: () -> Unit,
-    onIconDeleteClick: () -> Unit,
+    onIconDeleteClick: (Note) -> Unit,
     onIconEditClick: (String) -> Unit,
-    navigateToNotesScreen: () -> Unit,
-    navigateToSaveNoteScreen: () -> Unit
 ) {
     Scaffold(
         modifier = modifier
@@ -143,7 +142,5 @@ private fun NoteDetailsScreenPreview() {
         onIconArrowBackClick = {},
         onIconDeleteClick = {},
         onIconEditClick = {},
-        navigateToNotesScreen = {},
-        navigateToSaveNoteScreen = {}
     )
 }
