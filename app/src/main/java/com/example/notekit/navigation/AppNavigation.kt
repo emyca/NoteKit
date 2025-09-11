@@ -7,6 +7,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.notekit.home.presentation.navigation.NOTES_SCREEN_ROUTE
 import com.example.notekit.home.presentation.navigation.navigateToNotesScreen
 import com.example.notekit.home.presentation.navigation.notesScreen
+import com.example.notekit.note_details.presentation.navigation.navigateToNoteDetails
+import com.example.notekit.note_details.presentation.navigation.noteDetailsScreen
 import com.example.notekit.save_note.presentation.navigation.SaveNoteResArg
 import com.example.notekit.save_note.presentation.navigation.navigateToSaveNote
 import com.example.notekit.save_note.presentation.navigation.saveNoteScreen
@@ -22,12 +24,21 @@ fun AppNavigation() {
         notesScreen(
             navigateToInsertNote = {
                 navController.navigateToSaveNote(
-                    SaveNoteResArg.INSERT_NOTE,null)
+                    SaveNoteResArg.INSERT_NOTE, null
+                )
             },
+            navigateToNoteDetails = {
+                navController.navigateToNoteDetails(it)
+            },
+        )
+
+        noteDetailsScreen(
+            navigateToNotesScreen = { navController.navigateToNotesScreen() },
             navigateToUpdateNote = {
                 navController.navigateToSaveNote(
-                    SaveNoteResArg.UPDATE_NOTE,it)
-            },
+                    SaveNoteResArg.UPDATE_NOTE, it
+                )
+            }
         )
 
         saveNoteScreen { navController.navigateToNotesScreen() }
