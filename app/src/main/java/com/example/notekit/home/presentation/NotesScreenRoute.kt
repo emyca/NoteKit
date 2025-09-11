@@ -11,7 +11,8 @@ internal fun NotesScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: NotesViewModel = hiltViewModel(),
     navigateToInsertNote: () -> Unit,
-    navigateToUpdateNote: (String) -> Unit
+    navigateToNoteDetails: (String) -> Unit
+//    navigateToUpdateNote: (String) -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -20,6 +21,7 @@ internal fun NotesScreenRoute(
         modifier = modifier,
         uiState = uiState,
         onAddItemFABClick = navigateToInsertNote,
-        onNoteClick = navigateToUpdateNote
+        onNoteClick = navigateToNoteDetails
+//        onNoteClick = navigateToUpdateNote
     )
 }
