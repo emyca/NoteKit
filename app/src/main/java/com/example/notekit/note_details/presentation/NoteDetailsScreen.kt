@@ -46,8 +46,8 @@ internal fun NoteDetailsScreen(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
+                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 ),
                 title = {
                     Text(
@@ -60,7 +60,8 @@ internal fun NoteDetailsScreen(
                     IconButton(onClick = { /* TODO: Nav to NotesScreen */ }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Nav Back"
+                            contentDescription = "Nav Back",
+                            tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
                 },
@@ -68,13 +69,15 @@ internal fun NoteDetailsScreen(
                     IconButton(onClick = { /* TODO: Delete item and Nav to NotesScreen */ }) {
                         Icon(
                             imageVector = Icons.Filled.Delete,
-                            contentDescription = "Delete item"
+                            contentDescription = "Delete item",
+                            tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
                     IconButton(onClick = { /* TODO: Nav to SaveNoteScreen */ }) {
                         Icon(
                             imageVector = Icons.Filled.Edit,
-                            contentDescription = "Edit item"
+                            contentDescription = "Edit item",
+                            tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
                 },
@@ -113,7 +116,7 @@ private fun NoteContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 36.dp),
-            fontSize = 24.sp,
+            fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             text = name
         )
@@ -122,6 +125,7 @@ private fun NoteContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 36.dp),
+            fontSize = 24.sp,
             text = content
         )
     }
