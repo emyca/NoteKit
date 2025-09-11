@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notekit.core.domain.model.Note
+import com.example.notekit.ui.theme.NoteKitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -140,11 +141,12 @@ private fun NoteDetailsScreenPreview() {
             1, "My info", "Lorem ipsum dolor sit amet, " +
                     "consectetur adipiscing elit"
         )
-
-    NoteDetailsScreen(
-        uiState = uiState,
-        onIconArrowBackClick = {},
-        onIconDeleteClick = {},
-        onIconEditClick = {},
-    )
+    NoteKitTheme(dynamicColor = false) {
+        NoteDetailsScreen(
+            uiState = uiState,
+            onIconArrowBackClick = {},
+            onIconDeleteClick = {},
+            onIconEditClick = {},
+        )
+    }
 }
