@@ -22,6 +22,7 @@ import com.example.notekit.R
 import com.example.notekit.core.composables.AppFilledBtn
 import com.example.notekit.core.composables.AppOutlinedTextField
 import com.example.notekit.core.composables.AppTopBar
+import com.example.notekit.ui.theme.NoteKitTheme
 
 @Composable
 internal fun SaveNoteScreen(
@@ -127,13 +128,14 @@ private fun SaveNoteScreenPreview() {
             1, "My info", "Lorem ipsum dolor sit amet, " +
                     "consectetur adipiscing elit"
         )
-
-    SaveNoteScreen(
-        uiState = uiState,
-        topBarTitle = R.string.insert_top_bar_title,
-        onSaveButtonClick = {},
-        navigateToNotesScreen = {},
-        onNoteNameChanged = {},
-        onNoteContentChanged = {}
-    )
+    NoteKitTheme(dynamicColor = false) {
+        SaveNoteScreen(
+            uiState = uiState,
+            topBarTitle = R.string.insert_top_bar_title,
+            onSaveButtonClick = {},
+            navigateToNotesScreen = {},
+            onNoteNameChanged = {},
+            onNoteContentChanged = {}
+        )
+    }
 }
