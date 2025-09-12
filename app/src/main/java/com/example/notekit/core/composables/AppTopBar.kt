@@ -1,5 +1,6 @@
 package com.example.notekit.core.composables
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,14 +15,18 @@ import com.example.notekit.ui.theme.NoteKitTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
+    title: String,
     modifier: Modifier = Modifier,
+    navigationIcon: () -> Unit,
+    actions: RowScope.() -> Unit,
     containerColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     titleContentColor: Color = MaterialTheme.colorScheme.onPrimary,
-    title: String
 ) {
     TopAppBar(
-        modifier = modifier,
         title = { Text(title) },
+        modifier = modifier,
+        navigationIcon = navigationIcon,
+        actions = actions,
         colors = TopAppBarDefaults.topAppBarColors(
             titleContentColor = titleContentColor,
             containerColor = containerColor
@@ -34,10 +39,12 @@ fun AppTopBar(
 private fun AppTopBarPreview() {
     NoteKitTheme(dynamicColor = false) {
         AppTopBar(
+            title = "Note Kit",
             modifier = Modifier,
+            navigationIcon = {},
+            actions = {},
             containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
             titleContentColor = MaterialTheme.colorScheme.onPrimary,
-            title = "Note Kit"
         )
     }
 }
