@@ -1,9 +1,9 @@
 package com.example.notekit.core.composables
 
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,10 +19,10 @@ fun AppTopBar(
     titleContentColor: Color = MaterialTheme.colorScheme.onPrimary,
     title: String
 ) {
-    CenterAlignedTopAppBar(
+    TopAppBar(
         modifier = modifier,
         title = { Text(title) },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+        colors = TopAppBarDefaults.topAppBarColors(
             titleContentColor = titleContentColor,
             containerColor = containerColor
         )
