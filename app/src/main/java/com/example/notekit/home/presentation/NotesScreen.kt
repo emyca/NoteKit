@@ -41,8 +41,10 @@ internal fun NotesScreen(
         modifier = modifier.fillMaxSize(),
         topBar = {
             AppTopBar(
+                title = stringResource(R.string.app_name),
                 modifier = Modifier.shadow(4.dp),
-                title = stringResource(R.string.app_name)
+                navigationIcon = {},
+                actions = {}
             )
         },
         floatingActionButton = {
