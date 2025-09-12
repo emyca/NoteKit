@@ -20,7 +20,8 @@ internal fun SaveNoteRoute(
         modifier = modifier,
         uiState = uiState,
         topBarTitle = topBarTitle,
-        onSaveButtonClick = { viewModel.handleEvent(SaveNoteUiEvent.OnSaveClicked) },
+        onIconArrowBackClick = navigateToNotesScreen,
+        onIconDoneClick = { viewModel.handleEvent(SaveNoteUiEvent.OnSaveClicked) },
         navigateToNotesScreen = navigateToNotesScreen,
         onNoteNameChanged = { viewModel.handleEvent(SaveNoteUiEvent.OnNoteNameChanged(it)) },
         onNoteContentChanged = { viewModel.handleEvent(SaveNoteUiEvent.OnNoteContentChanged(it)) }
