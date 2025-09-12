@@ -17,8 +17,8 @@ import com.example.notekit.ui.theme.NoteKitTheme
 fun AppTopBar(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: () -> Unit,
-    actions: RowScope.() -> Unit,
+    navigationIcon: @Composable () -> Unit,
+    actions: @Composable RowScope.() -> Unit,
     containerColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     titleContentColor: Color = MaterialTheme.colorScheme.onPrimary,
 ) {
