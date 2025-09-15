@@ -41,6 +41,9 @@ fun AppNavigation() {
             }
         )
 
-        saveNoteScreen { navController.navigateToNotesScreen() }
+        saveNoteScreen(
+            navigateToNoteDetailsScreen = { navController.navigateToNoteDetails(it) },
+            navigateToNotesScreen = { navController.navigateToNotesScreen() },
+        )
     }
 }
