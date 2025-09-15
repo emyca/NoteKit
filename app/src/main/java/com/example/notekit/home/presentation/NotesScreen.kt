@@ -117,7 +117,12 @@ private fun NotesScreenContent(
 @Composable
 private fun NotesScreenEmptyPreview() {
     NoteKitTheme(dynamicColor = false) {
-        NotesScreenEmpty()
+        NotesScreen(
+            modifier = Modifier,
+            uiState = NotesScreenUiState.Empty,
+            onAddItemFABClick = {},
+            onNoteClick = {}
+        )
     }
 }
 
@@ -131,8 +136,10 @@ private fun NotesScreenContentPreview() {
         Note(4, "Epsilon", "Info epsilon")
     )
     NoteKitTheme(dynamicColor = false) {
-        NotesScreenContent(
-            notes = notes,
+        NotesScreen(
+            modifier = Modifier,
+            uiState = NotesScreenUiState.Content(notes),
+            onAddItemFABClick = {},
             onNoteClick = {}
         )
     }
