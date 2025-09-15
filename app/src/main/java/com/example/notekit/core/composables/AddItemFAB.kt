@@ -16,9 +16,9 @@ import com.example.notekit.R
 @Composable
 fun AddItemFAB(
     modifier: Modifier = Modifier,
-    containerColor: Color = MaterialTheme.colorScheme.tertiary,
-    contentColor: Color = MaterialTheme.colorScheme.onTertiary,
-    iconTintColor: Color = MaterialTheme.colorScheme.onTertiary,
+    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
+    contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
+    iconTintColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     shape: Shape = CircleShape,
     onClick: () -> Unit
 ) {
