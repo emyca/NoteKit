@@ -1,5 +1,6 @@
 package com.example.notekit.save_note.presentation
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.notekit.R
+import com.example.notekit.core.composables.AppFilledBtn
 import com.example.notekit.core.composables.AppOutlinedTextField
 import com.example.notekit.core.composables.AppTopBar
 import com.example.notekit.ui.theme.NoteKitTheme
@@ -33,13 +34,12 @@ internal fun SaveNoteScreen(
     modifier: Modifier = Modifier,
     uiState: SaveNoteUiState,
     topBarTitle: Int?,
-    onIconArrowBackClick: () -> Unit,
-    onIconDoneClick: () -> Unit,
+    navigateToNoteDetailsScreen: (String) -> Unit,
+    onSaveButtonClick: () -> Unit,
     navigateToNotesScreen: () -> Unit,
     onNoteNameChanged: (String) -> Unit,
     onNoteContentChanged: (String) -> Unit,
 ) {
-    val context = LocalContext.current
     Scaffold(
         modifier = modifier
             .fillMaxSize()
@@ -49,7 +49,7 @@ internal fun SaveNoteScreen(
                 title = stringResource(topBarTitle!!),
                 modifier = Modifier.shadow(4.dp),
                 navigationIcon = {
-                    IconButton(onClick = { /* TODO: Nav to NoteDetailsScreen */ }) {
+                    IconButton(onClick = { navigateToNoteDetailsScreen }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Nav Back",
@@ -57,15 +57,7 @@ internal fun SaveNoteScreen(
                         )
                     }
                 },
-                actions = {
-                    IconButton(onClick = { /* TODO: Validate input, Save item, Nav to NoteDetailsScreen */ }) {
-                        Icon(
-                            imageVector = Icons.Filled.Done,
-                            contentDescription = "Add or Edit action",
-                            tint = MaterialTheme.colorScheme.onPrimary
-                        )
-                    }
-                },
+                actions = {},
             )
         }
     ) { paddingValues ->
@@ -81,6 +73,8 @@ internal fun SaveNoteScreen(
                     content = uiState.content,
                     onNoteNameChanged = onNoteNameChanged,
                     onNoteContentChanged = onNoteContentChanged,
+                    onSaveButtonClick = onSaveButtonClick,
+                    navigateToNotesScreen = navigateToNotesScreen
                 )
             }
         }
@@ -94,6 +88,8 @@ private fun NoteContent(
     content: String,
     onNoteNameChanged: (String) -> Unit,
     onNoteContentChanged: (String) -> Unit,
+    onSaveButtonClick: () -> Unit,
+    navigateToNotesScreen: () -> Unit
 ) {
     val context = LocalContext.current
 
@@ -123,6 +119,25 @@ private fun NoteContent(
             labelText = stringResource(id = R.string.content_text_field_label),
             onValueChange = onNoteContentChanged
         )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        AppFilledBtn(
+            modifier = Modifier.fillMaxWidth()
+                .height(56.dp),
+            text = stringResource(R.string.save_button_text),
+            onClick = {
+                if (name.isEmpty() || content.isEmpty()) {
+                    Toast.makeText(
+                        context, context.getText(R.string.add_data_toast_text),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@AppFilledBtn
+                }
+                onSaveButtonClick()
+                navigateToNotesScreen()
+            }
+        )
     }
 }
 
@@ -139,8 +154,8 @@ private fun SaveNoteScreenPreview() {
         SaveNoteScreen(
             uiState = uiState,
             topBarTitle = R.string.insert_top_bar_title,
-            onIconArrowBackClick = {},
-            onIconDoneClick = {},
+            navigateToNoteDetailsScreen = {},
+            onSaveButtonClick = {},
             navigateToNotesScreen = {},
             onNoteNameChanged = {},
             onNoteContentChanged = {}
