@@ -11,6 +11,7 @@ internal fun SaveNoteRoute(
     modifier: Modifier = Modifier,
     viewModel: SaveNoteViewModel = hiltViewModel(),
     topBarTitle: Int?,
+    navigateToNoteDetailsScreen: (String) -> Unit,
     navigateToNotesScreen: () -> Unit
 ) {
 
@@ -20,8 +21,8 @@ internal fun SaveNoteRoute(
         modifier = modifier,
         uiState = uiState,
         topBarTitle = topBarTitle,
-        onIconArrowBackClick = navigateToNotesScreen,
-        onIconDoneClick = { viewModel.handleEvent(SaveNoteUiEvent.OnSaveClicked) },
+        navigateToNoteDetailsScreen = navigateToNoteDetailsScreen,
+        onSaveButtonClick = { viewModel.handleEvent(SaveNoteUiEvent.OnSaveClicked) },
         navigateToNotesScreen = navigateToNotesScreen,
         onNoteNameChanged = { viewModel.handleEvent(SaveNoteUiEvent.OnNoteNameChanged(it)) },
         onNoteContentChanged = { viewModel.handleEvent(SaveNoteUiEvent.OnNoteContentChanged(it)) }
