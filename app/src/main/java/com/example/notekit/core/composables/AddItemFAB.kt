@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.notekit.R
+import com.example.notekit.ui.theme.NoteKitTheme
 
 @Composable
 fun AddItemFAB(
@@ -33,6 +35,21 @@ fun AddItemFAB(
             imageVector = Icons.Filled.Add,
             contentDescription = stringResource(R.string.add_item_fab),
             tint = iconTintColor
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun AddItemFABPreview() {
+    NoteKitTheme(dynamicColor = false) {
+        AddItemFAB(
+            modifier = Modifier,
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            iconTintColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            shape = CircleShape,
+            onClick = {},
         )
     }
 }
