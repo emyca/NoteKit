@@ -24,6 +24,7 @@ fun AppOutlinedTextField(
     unfocusedBorderColor: Color = MaterialTheme.colorScheme.secondary,
     focusedBorderColor: Color = MaterialTheme.colorScheme.secondary,
 ) {
+    // TODO: Add input error indication
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
