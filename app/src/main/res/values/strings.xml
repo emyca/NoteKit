@@ -5,8 +5,9 @@
     <string name="tap_plus_btn_add_note">Tap the + button to add a note</string>
     <string name="add_note">Add Note</string>
     <string name="add_item_fab">Add item FAB</string>
-    <string name="insert_top_bar_title">Insert</string>
-    <string name="update_top_bar_title">Update</string>
+    <string name="insert_top_bar_title">Insert Note</string>
+    <string name="update_top_bar_title">Update Note</string>
+    <string name="note_details_top_bar_title">Note Details</string>
     <string name="name_text_field_label">Name</string>
     <string name="content_text_field_label">Content</string>
     <string name="save_button_text">Save</string>
