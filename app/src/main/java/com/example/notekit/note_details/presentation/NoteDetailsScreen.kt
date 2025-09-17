@@ -15,19 +15,19 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.notekit.R
+import com.example.notekit.core.composables.AppTopBar
 import com.example.notekit.core.domain.model.Note
 import com.example.notekit.ui.theme.NoteKitTheme
 
@@ -45,24 +45,14 @@ internal fun NoteDetailsScreen(
             .fillMaxSize()
             .imePadding(),
         topBar = {
-            TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
-                title = {
-                    Text(
-                        "Note Details",
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                },
+            AppTopBar(
+                title = stringResource(R.string.note_details_top_bar_title),
+                modifier = Modifier.shadow(4.dp),
                 navigationIcon = {
                     IconButton(onClick = { /* TODO: Nav to NotesScreen */ }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Nav Back",
-                            tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
                 },
@@ -71,17 +61,15 @@ internal fun NoteDetailsScreen(
                         Icon(
                             imageVector = Icons.Filled.Delete,
                             contentDescription = "Delete item",
-                            tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
                     IconButton(onClick = { /* TODO: Nav to SaveNoteScreen */ }) {
                         Icon(
                             imageVector = Icons.Filled.Edit,
                             contentDescription = "Edit item",
-                            tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
-                },
+                }
             )
         },
     ) { paddingValues ->
