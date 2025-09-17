@@ -53,7 +53,6 @@ internal fun SaveNoteScreen(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Nav Back",
-                            tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
                 },
