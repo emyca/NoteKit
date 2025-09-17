@@ -81,6 +81,7 @@ internal fun SaveNoteScreen(
     }
 }
 
+// TODO: Add content scrolling?
 @Composable
 private fun NoteContent(
     modifier: Modifier = Modifier,
