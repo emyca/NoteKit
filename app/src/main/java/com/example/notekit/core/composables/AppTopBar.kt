@@ -22,7 +22,7 @@ fun AppTopBar(
         title = {
             Text(
                 text = title,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Normal
             )
         },
         modifier = modifier,
@@ -40,8 +40,6 @@ private fun AppTopBarPreview() {
             modifier = Modifier,
             navigationIcon = {},
             actions = {},
-//            containerColor = MaterialTheme.colorScheme.primaryContainer,
-//            titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
         )
     }
 }
