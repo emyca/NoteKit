@@ -3,7 +3,6 @@ package com.example.notekit.note_details.presentation
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.notekit.core.domain.model.Note
 import com.example.notekit.note_details.domain.usecase.DeleteUseCase
 import com.example.notekit.note_details.domain.usecase.GetByIdUseCase
 import com.example.notekit.note_details.presentation.navigation.NOTE_ID_ARG
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal sealed interface NoteDetailsUiEvent {
-    data class OnDeleteClick(val note: Note) : NoteDetailsUiEvent
+    data class OnDeleteClick(val noteId: Int) : NoteDetailsUiEvent
 }
 
 sealed interface NoteDetailsUiState {
@@ -49,8 +48,10 @@ internal class NoteDetailsViewModel @Inject constructor(
 
     fun handleEvent(event: NoteDetailsUiEvent) {
         when (event) {
-            is NoteDetailsUiEvent.OnDeleteClick ->
-                deleteNote(event.note)
+            is NoteDetailsUiEvent.OnDeleteClick -> {
+                if (noteId != null)
+                    deleteNote(id = noteId.toInt())
+            }
         }
     }
 
@@ -67,9 +68,9 @@ internal class NoteDetailsViewModel @Inject constructor(
         }
     }
 
-    private fun deleteNote(note: Note) {
+    private fun deleteNote(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            deleteUseCase(note)
+            deleteUseCase(getByIdUseCase(id).first())
         }
     }
 }
