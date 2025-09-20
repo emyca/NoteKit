@@ -19,7 +19,7 @@ internal fun NoteDetailsRoute(
     NoteDetailsScreen(
         modifier = modifier,
         uiState = uiState,
-        onIconArrowBackClick = navigateToNotesScreen,
+        navigateToNotesScreen = navigateToNotesScreen,
         onIconDeleteClick = { viewModel.handleEvent(NoteDetailsUiEvent.OnDeleteClick(it)) },
         onIconEditClick = navigateToUpdateNote,
     )
