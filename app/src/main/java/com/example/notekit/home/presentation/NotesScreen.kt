@@ -19,7 +19,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -46,7 +45,6 @@ internal fun NotesScreen(
         topBar = {
             AppTopBar(
                 title = stringResource(R.string.app_name),
-                modifier = Modifier.shadow(4.dp),
                 navigationIcon = {},
                 actions = {}
             )
@@ -105,7 +103,6 @@ private fun NotesScreenContent(
     notes: List<Note>,
     onNoteClick: (String) -> Unit
 ) {
-    Spacer(modifier = Modifier.height(24.dp))
     LazyColumn(
         modifier = modifier
             .wrapContentSize()
