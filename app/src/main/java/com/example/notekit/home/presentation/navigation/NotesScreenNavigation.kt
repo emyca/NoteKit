@@ -16,13 +16,11 @@ fun NavController.navigateToNotesScreen() = navigate(NOTES_SCREEN_ROUTE) {
 fun NavGraphBuilder.notesScreen(
     navigateToInsertNote: () -> Unit,
     navigateToNoteDetails: (String) -> Unit,
-//    navigateToUpdateNote: (String) -> Unit
 ) {
     composable(route = NOTES_SCREEN_ROUTE) {
         NotesScreenRoute(
             navigateToInsertNote = navigateToInsertNote,
             navigateToNoteDetails = navigateToNoteDetails
-//            navigateToUpdateNote = navigateToUpdateNote
         )
     }
 }
