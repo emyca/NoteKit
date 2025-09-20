@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notekit.R
 import com.example.notekit.core.composables.AppTopBar
-import com.example.notekit.core.domain.model.Note
 import com.example.notekit.ui.theme.NoteKitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,7 +38,7 @@ internal fun NoteDetailsScreen(
     modifier: Modifier = Modifier,
     uiState: NoteDetailsUiState,
     navigateToNotesScreen: () -> Unit,
-    onIconDeleteClick: (Note) -> Unit,
+    onDeleteIconClick: (Int) -> Unit,
     onIconEditClick: (String) -> Unit,
 ) {
     Scaffold(
@@ -59,7 +58,10 @@ internal fun NoteDetailsScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* TODO: Delete item and Nav to NotesScreen */ }) {
+                    IconButton(onClick = {
+                        onDeleteIconClick(NoteDetailsUiState.NoteState().id)
+                        navigateToNotesScreen()
+                    }) {
                         Icon(
                             imageVector = Icons.Outlined.Delete,
                             contentDescription = "Delete item",
@@ -139,7 +141,7 @@ private fun NoteDetailsScreenPreview() {
         NoteDetailsScreen(
             uiState = uiState,
             navigateToNotesScreen = {},
-            onIconDeleteClick = {},
+            onDeleteIconClick = {},
             onIconEditClick = {},
         )
     }
