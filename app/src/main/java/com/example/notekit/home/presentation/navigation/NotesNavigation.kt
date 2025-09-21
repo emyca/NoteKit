@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.notekit.home.presentation.NotesRoute
 
-const val NOTES_ROUTE = "notes_screen"
+const val NOTES_ROUTE = "notes_route"
 
 fun NavController.navigateToNotesScreen() = navigate(NOTES_ROUTE) {
     popUpTo(NOTES_ROUTE) {
@@ -14,13 +14,13 @@ fun NavController.navigateToNotesScreen() = navigate(NOTES_ROUTE) {
 }
 
 fun NavGraphBuilder.notesScreen(
-    navigateToInsertNote: () -> Unit,
-    navigateToNoteDetails: (String) -> Unit,
+    navigateToSaveNoteScreen: () -> Unit,
+    navigateToNoteDetailsScreen: (String) -> Unit,
 ) {
     composable(route = NOTES_ROUTE) {
         NotesRoute(
-            navigateToInsertNote = navigateToInsertNote,
-            navigateToNoteDetails = navigateToNoteDetails
+            navigateToSaveNoteScreen = navigateToSaveNoteScreen,
+            navigateToNoteDetailsScreen = navigateToNoteDetailsScreen
         )
     }
 }

@@ -10,7 +10,7 @@ import com.example.notekit.note_details.presentation.NoteDetailsRoute
 const val NOTE_DETAILS_ROUTE = "note_details_route"
 const val NOTE_ID_ARG = "note_id"
 
-fun NavController.navigateToNoteDetails(
+fun NavController.navigateToNoteDetailsScreen(
     noteId: String?
 ) {
     navigate(
@@ -22,7 +22,7 @@ fun NavController.navigateToNoteDetails(
 
 fun NavGraphBuilder.noteDetailsScreen(
     navigateToNotesScreen: () -> Unit,
-    navigateToUpdateNote: (String) -> Unit
+    navigateToSaveNoteScreen: (String) -> Unit
 ) {
     composable(
         route = "$NOTE_DETAILS_ROUTE/{${NOTE_ID_ARG}}",
@@ -32,7 +32,7 @@ fun NavGraphBuilder.noteDetailsScreen(
     ) { backStackEntry ->
         NoteDetailsRoute(
             navigateToNotesScreen = navigateToNotesScreen,
-            navigateToUpdateNote = navigateToUpdateNote
+            navigateToSaveNoteScreen = navigateToSaveNoteScreen
         )
     }
 }

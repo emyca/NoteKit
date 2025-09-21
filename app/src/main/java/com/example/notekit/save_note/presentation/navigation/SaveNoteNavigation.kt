@@ -16,7 +16,7 @@ enum class SaveNoteResArg {
     INSERT_NOTE, UPDATE_NOTE
 }
 
-fun NavController.navigateToSaveNote(
+fun NavController.navigateToSaveNoteScreen(
     topBarTitleResArg: SaveNoteResArg,
     noteId: String?
 ) {

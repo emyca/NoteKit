@@ -11,7 +11,7 @@ internal fun NoteDetailsRoute(
     modifier: Modifier = Modifier,
     viewModel: NoteDetailsViewModel = hiltViewModel(),
     navigateToNotesScreen: () -> Unit,
-    navigateToUpdateNote: (String) -> Unit,
+    navigateToSaveNoteScreen: (String) -> Unit,
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -19,8 +19,8 @@ internal fun NoteDetailsRoute(
     NoteDetailsScreen(
         modifier = modifier,
         uiState = uiState,
-        navigateToNotesScreen = navigateToNotesScreen,
+        onArrowBackIconClick = navigateToNotesScreen,
         onDeleteIconClick = { viewModel.handleEvent(NoteDetailsUiEvent.OnDeleteClick(it)) },
-        onIconEditClick = navigateToUpdateNote,
+        onEditIconClick = navigateToSaveNoteScreen,
     )
 }

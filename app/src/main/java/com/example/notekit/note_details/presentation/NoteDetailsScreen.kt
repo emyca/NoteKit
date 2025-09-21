@@ -37,9 +37,9 @@ import com.example.notekit.ui.theme.NoteKitTheme
 internal fun NoteDetailsScreen(
     modifier: Modifier = Modifier,
     uiState: NoteDetailsUiState,
-    navigateToNotesScreen: () -> Unit,
+    onArrowBackIconClick: () -> Unit,
     onDeleteIconClick: (Int) -> Unit,
-    onIconEditClick: (String) -> Unit,
+    onEditIconClick: (String) -> Unit,
 ) {
     Scaffold(
         modifier = modifier
@@ -49,7 +49,7 @@ internal fun NoteDetailsScreen(
             AppTopBar(
                 title = stringResource(R.string.note_details_top_bar_title),
                 navigationIcon = {
-                    IconButton(onClick = { navigateToNotesScreen() }) {
+                    IconButton(onClick = { onArrowBackIconClick() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Nav Back",
@@ -60,7 +60,7 @@ internal fun NoteDetailsScreen(
                 actions = {
                     IconButton(onClick = {
                         onDeleteIconClick(NoteDetailsUiState.NoteState().id)
-                        navigateToNotesScreen()
+                        onArrowBackIconClick()
                     }) {
                         Icon(
                             imageVector = Icons.Outlined.Delete,
@@ -140,9 +140,9 @@ private fun NoteDetailsScreenPreview() {
     NoteKitTheme(dynamicColor = false) {
         NoteDetailsScreen(
             uiState = uiState,
-            navigateToNotesScreen = {},
+            onArrowBackIconClick = {},
             onDeleteIconClick = {},
-            onIconEditClick = {},
+            onEditIconClick = {},
         )
     }
 }
