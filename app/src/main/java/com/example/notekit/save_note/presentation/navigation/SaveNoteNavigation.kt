@@ -32,7 +32,6 @@ fun NavController.navigateToSaveNoteScreen(
 }
 
 fun NavGraphBuilder.saveNoteScreen(
-    navigateToNoteDetailsScreen: (String) -> Unit,
     navigateToNotesScreen: () -> Unit) {
     composable(
         route = "$SAVE_NOTE_ROUTE/{$TOP_BAR_TITLE_ARG}/{$NOTE_ID_ARG}",
@@ -43,7 +42,6 @@ fun NavGraphBuilder.saveNoteScreen(
     ) { backStackEntry ->
         SaveNoteRoute(
             topBarTitle = backStackEntry.arguments?.getInt(TOP_BAR_TITLE_ARG),
-            navigateToNoteDetailsScreen = navigateToNoteDetailsScreen,
             navigateToNotesScreen = navigateToNotesScreen
         )
     }

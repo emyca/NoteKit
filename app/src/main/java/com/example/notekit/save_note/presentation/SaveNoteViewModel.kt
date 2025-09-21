@@ -92,9 +92,9 @@ internal class SaveNoteViewModel @Inject constructor(
                 name = state.name,
                 content = state.content
             )
-
+// TODO: Fix crush in update
             if (noteId != null) {
-                updateUseCase(note)
+                updateUseCase(getByIdUseCase(noteId.toInt()).first())
             } else insertUseCase(note)
         }
     }

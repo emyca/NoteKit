@@ -35,9 +35,8 @@ internal fun SaveNoteScreen(
     modifier: Modifier = Modifier,
     uiState: SaveNoteUiState,
     topBarTitle: Int?,
-    navigateToNoteDetailsScreen: (String) -> Unit,
+    onArrowBackIconClick: () -> Unit,
     onSaveButtonClick: () -> Unit,
-    navigateToNotesScreen: () -> Unit,
     onNoteNameChanged: (String) -> Unit,
     onNoteContentChanged: (String) -> Unit,
 ) {
@@ -49,7 +48,7 @@ internal fun SaveNoteScreen(
             AppTopBar(
                 title = stringResource(topBarTitle!!),
                 navigationIcon = {
-                    IconButton(onClick = { navigateToNoteDetailsScreen }) {
+                    IconButton(onClick = { onArrowBackIconClick() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                             contentDescription = "Nav Back",
@@ -74,7 +73,6 @@ internal fun SaveNoteScreen(
                     onNoteNameChanged = onNoteNameChanged,
                     onNoteContentChanged = onNoteContentChanged,
                     onSaveButtonClick = onSaveButtonClick,
-                    navigateToNotesScreen = navigateToNotesScreen
                 )
             }
         }
@@ -90,7 +88,6 @@ private fun NoteContent(
     onNoteNameChanged: (String) -> Unit,
     onNoteContentChanged: (String) -> Unit,
     onSaveButtonClick: () -> Unit,
-    navigateToNotesScreen: () -> Unit
 ) {
     val context = LocalContext.current
 
@@ -139,7 +136,6 @@ private fun NoteContent(
                     return@AppFilledBtn
                 }
                 onSaveButtonClick()
-                navigateToNotesScreen()
             }
         )
     }
@@ -158,9 +154,8 @@ private fun SaveNoteScreenPreview() {
         SaveNoteScreen(
             uiState = uiState,
             topBarTitle = R.string.insert_top_bar_title,
-            navigateToNoteDetailsScreen = {},
+            onArrowBackIconClick = {},
             onSaveButtonClick = {},
-            navigateToNotesScreen = {},
             onNoteNameChanged = {},
             onNoteContentChanged = {}
         )
