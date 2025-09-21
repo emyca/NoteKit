@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.notekit.home.presentation.navigation.NOTES_SCREEN_ROUTE
+import com.example.notekit.home.presentation.navigation.NOTES_ROUTE
 import com.example.notekit.home.presentation.navigation.navigateToNotesScreen
 import com.example.notekit.home.presentation.navigation.notesScreen
 import com.example.notekit.note_details.presentation.navigation.navigateToNoteDetails
@@ -19,7 +19,7 @@ fun AppNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = NOTES_SCREEN_ROUTE
+        startDestination = NOTES_ROUTE
     ) {
         notesScreen(
             navigateToInsertNote = {
