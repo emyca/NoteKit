@@ -60,7 +60,6 @@ internal fun NoteDetailsScreen(
                 actions = {
                     IconButton(onClick = {
                         onDeleteIconClick(NoteDetailsUiState.NoteState().id)
-                        onArrowBackIconClick()
                     }) {
                         Icon(
                             imageVector = Icons.Outlined.Delete,
