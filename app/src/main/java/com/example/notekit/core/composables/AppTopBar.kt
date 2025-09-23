@@ -5,17 +5,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.notekit.ui.theme.NoteKitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
     title: String,
-    modifier: Modifier = Modifier,
     navigationIcon: @Composable () -> Unit,
     actions: @Composable RowScope.() -> Unit,
 ) {
@@ -25,7 +21,6 @@ fun AppTopBar(
                 text = title,
             )
         },
-        modifier = modifier.shadow(4.dp),
         navigationIcon = navigationIcon,
         actions = actions,
     )
@@ -37,7 +32,6 @@ private fun AppTopBarPreview() {
     NoteKitTheme(dynamicColor = false) {
         AppTopBar(
             title = "Note Kit",
-            modifier = Modifier,
             navigationIcon = {},
             actions = {},
         )
