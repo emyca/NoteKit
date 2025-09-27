@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal sealed interface NotesScreenUiState {
+    data object Loading : NotesScreenUiState
     data object Empty : NotesScreenUiState
     data class Content(val notes: List<Note>) : NotesScreenUiState
 }
@@ -46,7 +47,7 @@ internal class NotesViewModel @Inject constructor(
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = NotesScreenUiState.Empty
+            initialValue = NotesScreenUiState.Loading
         )
 
     private fun delete(note: Note) {
