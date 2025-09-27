@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -61,6 +62,7 @@ internal fun NotesScreen(
                 .padding(paddingValues)
         ) {
             when (uiState) {
+                is NotesScreenUiState.Loading -> NotesScreenLoading()
                 is NotesScreenUiState.Empty -> NotesScreenEmpty()
                 is NotesScreenUiState.Content -> NotesScreenContent(
                     notes = uiState.notes,
@@ -68,6 +70,16 @@ internal fun NotesScreen(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun NotesScreenLoading(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        CircularProgressIndicator()
     }
 }
 
