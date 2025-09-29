@@ -1,5 +1,6 @@
 package com.example.notekit.home.presentation.navigation
 
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -20,7 +21,10 @@ fun NavGraphBuilder.notesScreen(
     composable(route = NOTES_ROUTE) {
         NotesRoute(
             navigateToSaveNoteScreen = navigateToSaveNoteScreen,
-            navigateToNoteDetailsScreen = navigateToNoteDetailsScreen
+            navigateToNoteDetailsScreen = navigateToNoteDetailsScreen,
+            textFieldState = TextFieldState(),
+            onSearch = {},
+            searchResults = listOf(),
         )
     }
 }

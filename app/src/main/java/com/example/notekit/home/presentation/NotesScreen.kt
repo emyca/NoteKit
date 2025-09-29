@@ -6,21 +6,37 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,16 +55,62 @@ internal fun NotesScreen(
     modifier: Modifier = Modifier,
     uiState: NotesScreenUiState,
     onAddItemFABClick: () -> Unit,
-    onNoteClick: (String) -> Unit
+    onNoteClick: (String) -> Unit,
+    textFieldState: TextFieldState,
+    onSearch: (String) -> Unit,
+    searchResults: List<String>,
 ) {
+    // Controls expansion state of the search bar
+    // https://developer.android.com/develop/ui/compose/components/search-bar#search-bar
+    var expanded by rememberSaveable { mutableStateOf(false) }
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            AppTopBar(
-                title = stringResource(R.string.app_name),
-                navigationIcon = {},
-                actions = {}
-            )
+            Column {
+                AppTopBar(
+                    title = stringResource(R.string.app_name),
+                    navigationIcon = {},
+                    actions = {}
+                )
+                SearchBar(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .semantics { traversalIndex = 0f },
+                    inputField = {
+                        SearchBarDefaults.InputField(
+                            query = textFieldState.text.toString(),
+                            onQueryChange = { textFieldState.edit { replace(0, length, it) } },
+                            onSearch = {
+                                onSearch(textFieldState.text.toString())
+                                expanded = false
+                            },
+                            expanded = expanded,
+                            onExpandedChange = { expanded = it },
+                            placeholder = { Text("Search note") },
+                            leadingIcon = {
+                                Icon(Icons.Default.Search, contentDescription = "Search")
+                            }
+                        )
+                    },
+                    expanded = expanded,
+                    onExpandedChange = { expanded = it },
+                ) {
+                    // Display search results in a scrollable column
+                    Column(Modifier.verticalScroll(rememberScrollState())) {
+                        searchResults.forEach { result ->
+                            ListItem(
+                                headlineContent = { Text(result) },
+                                modifier = Modifier
+                                    .clickable {
+                                        textFieldState.edit { replace(0, length, result) }
+                                        expanded = false
+                                    }
+                                    .fillMaxWidth()
+                            )
+                        }
+                    }
+                }
+            }
         },
         floatingActionButton = {
             AddItemFAB {
@@ -115,6 +177,11 @@ private fun NotesScreenContent(
     notes: List<Note>,
     onNoteClick: (String) -> Unit
 ) {
+    Spacer(
+        modifier
+            .fillMaxWidth()
+            .height(24.dp)
+    )
     LazyColumn(
         modifier = modifier
             .wrapContentSize()
@@ -141,7 +208,10 @@ private fun NotesScreenEmptyPreview() {
             modifier = Modifier,
             uiState = NotesScreenUiState.Empty,
             onAddItemFABClick = {},
-            onNoteClick = {}
+            onNoteClick = {},
+            textFieldState = TextFieldState(),
+            onSearch = {},
+            searchResults = listOf(),
         )
     }
 }
@@ -160,7 +230,10 @@ private fun NotesScreenContentPreview() {
             modifier = Modifier,
             uiState = NotesScreenUiState.Content(notes),
             onAddItemFABClick = {},
-            onNoteClick = {}
+            onNoteClick = {},
+            textFieldState = TextFieldState(),
+            onSearch = {},
+            searchResults = listOf(),
         )
     }
 }
