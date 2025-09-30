@@ -22,9 +22,6 @@ fun NavGraphBuilder.notesScreen(
         NotesRoute(
             navigateToSaveNoteScreen = navigateToSaveNoteScreen,
             navigateToNoteDetailsScreen = navigateToNoteDetailsScreen,
-            textFieldState = TextFieldState(),
-            onSearch = {},
-            searchResults = listOf(),
         )
     }
 }
