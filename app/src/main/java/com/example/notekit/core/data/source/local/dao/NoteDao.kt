@@ -26,4 +26,7 @@ interface NoteDao {
 
     @Delete
     suspend fun delete(noteEntity: NoteEntity)
+
+    @Query("SELECT * FROM notes WHERE name LIKE '%' || :search || '%'")
+    fun getByName(search: String?): Flow<List<NoteEntity>>
 }
