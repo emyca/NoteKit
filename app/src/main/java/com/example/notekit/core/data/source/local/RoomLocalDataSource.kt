@@ -37,4 +37,12 @@ class RoomLocalDataSource @Inject constructor(
     override suspend fun update(note: Note) {
         noteDao.update(note.toNoteEntity())
     }
+
+    override fun getByName(search: String?): Flow<List<Note>> {
+        return noteDao.getByName(search).map { noteEntityList ->
+            noteEntityList.map { noteEntity ->
+                noteEntity.toNote()
+            }
+        }
+    }
 }
