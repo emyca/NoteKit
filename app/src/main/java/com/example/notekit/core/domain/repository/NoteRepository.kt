@@ -14,4 +14,6 @@ interface NoteRepository {
     suspend fun update(note: Note)
 
     suspend fun delete(note: Note)
+
+    fun getByName(search: String?): Flow<List<Note>>
 }
