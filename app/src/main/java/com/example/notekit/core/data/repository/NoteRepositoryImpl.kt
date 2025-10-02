@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class NoteRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
-): NoteRepository {
+) : NoteRepository {
 
     override suspend fun insert(note: Note) =
         localDataSource.insert(note)
@@ -24,4 +24,7 @@ class NoteRepositoryImpl @Inject constructor(
 
     override suspend fun delete(note: Note) =
         localDataSource.delete(note)
+
+    override fun getByName(search: String?): Flow<List<Note>> =
+        localDataSource.getByName(search)
 }
