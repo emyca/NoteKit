@@ -45,6 +45,7 @@ internal fun NotesScreen(
     uiState: NotesScreenUiState,
     onAddItemFABClick: () -> Unit,
     onNoteClick: (String) -> Unit,
+    onIconSearchClick: () -> Unit,
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -54,7 +55,7 @@ internal fun NotesScreen(
                     title = stringResource(R.string.app_name),
                     navigationIcon = {},
                     actions = {
-                        IconButton(onClick = { /* TODO: Open search view */ }) {
+                        IconButton(onClick = { onIconSearchClick() }) {
                             Icon(
                                 imageVector = Icons.Filled.Search,
                                 contentDescription = "Search item",
@@ -162,6 +163,7 @@ private fun NotesScreenEmptyPreview() {
             uiState = NotesScreenUiState.Empty,
             onAddItemFABClick = {},
             onNoteClick = {},
+            onIconSearchClick = {}
         )
     }
 }
@@ -181,6 +183,7 @@ private fun NotesScreenContentPreview() {
             uiState = NotesScreenUiState.Content(notes),
             onAddItemFABClick = {},
             onNoteClick = {},
+            onIconSearchClick = {}
         )
     }
 }
