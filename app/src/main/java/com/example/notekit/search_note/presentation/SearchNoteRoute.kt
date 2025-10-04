@@ -15,18 +15,13 @@ internal fun SearchNoteRoute(
 ) {
 
     val state by viewModel.state.collectAsState()
-    val query by viewModel.query.collectAsState()
 
     SearchNoteScreen(
         modifier = modifier,
         state = state,
-        query = query,
         onArrowBackIconClick = navigateToNotesScreen,
         onQueryChange = { newQuery ->
-            viewModel.handleIntent(SearchNoteScreenIntent.UpdateQuery(newQuery))
-        },
-        onSearch = { submittedQuery ->
-            viewModel.handleIntent(SearchNoteScreenIntent.Search(submittedQuery))
+            viewModel.handleIntent(SearchNoteScreenIntent.PerformSearch(newQuery))
         },
         onClearIconClick = { viewModel.handleIntent(SearchNoteScreenIntent.ClearSearch) },
         onNoteClick = navigateToNoteDetailsScreen,

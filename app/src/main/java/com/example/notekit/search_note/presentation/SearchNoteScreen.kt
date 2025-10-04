@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,27 +45,30 @@ import com.example.notekit.ui.theme.NoteKitTheme
 internal fun SearchNoteScreen(
     modifier: Modifier = Modifier,
     state: SearchNoteScreenState,
-    query: String,
-    onArrowBackIconClick: () -> Unit,
     onQueryChange: (String) -> Unit,
-    onSearch: (String) -> Unit,
+    onArrowBackIconClick: () -> Unit,
     onClearIconClick: () -> Unit,
     onNoteClick: (String) -> Unit,
 ) {
     var queryInput by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(false) }
 
-    Column {
-        val onActiveChange: (Boolean) -> Unit = {}
-        val colors1 = SearchBarDefaults.colors()
+    Column(
+        modifier = modifier
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         SearchBar(
             inputField = {
                 SearchBarDefaults.InputField(
-                    query = query,
-                    onQueryChange = onQueryChange,
-                    onSearch = onSearch,
-                    expanded = true,
-                    onExpandedChange = onActiveChange,
+                    query = queryInput,
+                    onQueryChange = {
+                        queryInput = it
+                        onQueryChange(it)
+                    },
+                    onSearch = { active = true },
+                    expanded = false,
+                    onExpandedChange = { active = it },
                     enabled = true,
                     placeholder = { Text("Search...") },
                     leadingIcon = {
@@ -90,27 +94,29 @@ internal fun SearchNoteScreen(
                             }
                         }
                     },
-                    colors = colors1.inputFieldColors,
+                    colors = SearchBarDefaults.colors(containerColor = Color.Transparent).inputFieldColors,
                     interactionSource = null,
                 )
             },
             expanded = true,
-            onExpandedChange = onActiveChange,
+            onExpandedChange = { active = it },
             modifier = Modifier,
             shape = SearchBarDefaults.inputFieldShape,
-            colors = colors1,
+            colors = SearchBarDefaults.colors(containerColor = Color.Transparent),
             tonalElevation = SearchBarDefaults.TonalElevation,
             shadowElevation = SearchBarDefaults.ShadowElevation,
             windowInsets = SearchBarDefaults.windowInsets,
             content = {
                 when (state) {
                     is SearchNoteScreenState.Idle -> {
-                        SearchNoteScreenInfo(modifier, "No data yet.")
+                        SearchNoteScreenInfo(modifier, "No data yet :/")
                     }
 
                     is SearchNoteScreenState.Loading -> SearchNoteScreenLoading(modifier)
                     is SearchNoteScreenState.Success -> {
                         val results = state.results
+                        if (results.isEmpty())
+                            SearchNoteScreenInfo(modifier, "No data found :(")
                         SearchNoteScreenContent(modifier, results, onNoteClick = onNoteClick)
                     }
 
@@ -170,12 +176,12 @@ private fun SearchNoteScreenContent(
     LazyColumn(
         modifier = modifier
             .wrapContentSize()
-            .background(MaterialTheme.colorScheme.onPrimary)
+            .background(MaterialTheme.colorScheme.background)
     ) {
         itemsIndexed(notes) { index, note ->
             NoteItem(
                 modifier = Modifier
-                    .padding(horizontal = 16.dp)
+                    .padding(start = 16.dp)
                     .clickable { onNoteClick(note.id.toString()) },
                 title = note.name
             )
@@ -192,10 +198,8 @@ private fun SearchNoteScreenInfoPreview() {
         SearchNoteScreen(
             modifier = Modifier,
             state = SearchNoteScreenState.Idle,
-            query = "abc",
-            onArrowBackIconClick = {},
             onQueryChange = {},
-            onSearch = {},
+            onArrowBackIconClick = {},
             onClearIconClick = {},
             onNoteClick = {},
         )
@@ -213,10 +217,8 @@ private fun SearchNoteScreenContentPreview() {
         SearchNoteScreen(
             modifier = Modifier,
             state = SearchNoteScreenState.Success(notes),
-            query = "eta",
-            onArrowBackIconClick = {},
             onQueryChange = {},
-            onSearch = {},
+            onArrowBackIconClick = {},
             onClearIconClick = {},
             onNoteClick = {},
         )
