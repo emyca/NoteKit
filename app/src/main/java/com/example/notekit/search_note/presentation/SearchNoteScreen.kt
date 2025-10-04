@@ -32,10 +32,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notekit.core.composables.NoteItem
 import com.example.notekit.core.domain.model.Note
+import com.example.notekit.ui.theme.NoteKitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -180,5 +182,43 @@ private fun SearchNoteScreenContent(
             if (index < notes.size - 1)
                 HorizontalDivider()
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun SearchNoteScreenInfoPreview() {
+    NoteKitTheme(dynamicColor = false) {
+        SearchNoteScreen(
+            modifier = Modifier,
+            state = SearchNoteScreenState.Idle,
+            query = "abc",
+            onArrowBackIconClick = {},
+            onQueryChange = {},
+            onSearch = {},
+            onClearIconClick = {},
+            onNoteClick = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun SearchNoteScreenContentPreview() {
+    val notes = listOf(
+        Note(1, "Aleta", "Info aleta"),
+        Note(2, "Beta", "Info beta")
+    )
+    NoteKitTheme(dynamicColor = false) {
+        SearchNoteScreen(
+            modifier = Modifier,
+            state = SearchNoteScreenState.Success(notes),
+            query = "eta",
+            onArrowBackIconClick = {},
+            onQueryChange = {},
+            onSearch = {},
+            onClearIconClick = {},
+            onNoteClick = {},
+        )
     }
 }
