@@ -12,6 +12,7 @@ import com.example.notekit.note_details.presentation.navigation.noteDetailsScree
 import com.example.notekit.save_note.presentation.navigation.SaveNoteResArg
 import com.example.notekit.save_note.presentation.navigation.navigateToSaveNoteScreen
 import com.example.notekit.save_note.presentation.navigation.saveNoteScreen
+import com.example.notekit.search_note.presentation.navigation.navigateToSearchNoteScreen
 import com.example.notekit.search_note.presentation.navigation.searchNoteScreen
 
 @Composable
@@ -31,6 +32,9 @@ fun AppNavigation() {
             navigateToNoteDetailsScreen = {
                 navController.navigateToNoteDetailsScreen(it)
             },
+            navigateToSearchNoteScreen = {
+                navController.navigateToSearchNoteScreen()
+            }
         )
 
         searchNoteScreen(
