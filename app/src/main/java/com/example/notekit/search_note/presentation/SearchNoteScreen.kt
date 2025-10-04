@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -25,7 +25,6 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,7 +34,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.notekit.core.composables.NoteItem
 import com.example.notekit.core.domain.model.Note
 
@@ -43,11 +41,14 @@ import com.example.notekit.core.domain.model.Note
 @Composable
 internal fun SearchNoteScreen(
     modifier: Modifier = Modifier,
-    viewModel: SearchNoteViewModel = viewModel(),
+    state: SearchNoteScreenState,
+    query: String,
+    onArrowBackIconClick: () -> Unit,
+    onQueryChange: (String) -> Unit,
+    onSearch: (String) -> Unit,
+    onClearIconClick: () -> Unit,
     onNoteClick: (String) -> Unit,
 ) {
-    val state by viewModel.state.collectAsState()
-    val query by viewModel.query.collectAsState()
     var queryInput by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(false) }
 
@@ -58,23 +59,27 @@ internal fun SearchNoteScreen(
             inputField = {
                 SearchBarDefaults.InputField(
                     query = query,
-                    onQueryChange = { newQuery ->
-                        viewModel.handleIntent(SearchNoteScreenIntent.UpdateQuery(newQuery))
-                    },
-                    onSearch = { submittedQuery ->
-                        viewModel.handleIntent(SearchNoteScreenIntent.Search(submittedQuery))
-                    },
+                    onQueryChange = onQueryChange,
+                    onSearch = onSearch,
                     expanded = true,
                     onExpandedChange = onActiveChange,
                     enabled = true,
                     placeholder = { Text("Search...") },
-                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                    leadingIcon = {
+                        IconButton(onClick = { onArrowBackIconClick() }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Nav Back",
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            )
+                        }
+                    },
                     trailingIcon = {
                         if (active) {
                             IconButton(onClick = {
                                 if (queryInput.isNotEmpty()) {
                                     queryInput = ""
-                                    viewModel.handleIntent(SearchNoteScreenIntent.ClearSearch)
+                                    onClearIconClick()
                                 } else {
                                     active = false
                                 }
@@ -103,12 +108,12 @@ internal fun SearchNoteScreen(
 
                     is SearchNoteScreenState.Loading -> SearchNoteScreenLoading(modifier)
                     is SearchNoteScreenState.Success -> {
-                        val results = (state as SearchNoteScreenState.Success).results
+                        val results = state.results
                         SearchNoteScreenContent(modifier, results, onNoteClick = onNoteClick)
                     }
 
                     is SearchNoteScreenState.Error -> {
-                        val message = (state as SearchNoteScreenState.Error).message
+                        val message = state.message
                         SearchNoteScreenInfo(modifier, message)
                     }
                 }
