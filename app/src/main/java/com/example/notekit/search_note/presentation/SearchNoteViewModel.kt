@@ -49,7 +49,7 @@ internal class SearchNoteViewModel @Inject constructor(
             _state.value = SearchNoteScreenState.Loading
 
             try {
-                delay(300) // Debounce delay
+                delay(300)
                 val resultsFlow = getNoteByNameUseCase(query)
                 val resultsList = mutableListOf<Note>()
                 resultsFlow.collect {
