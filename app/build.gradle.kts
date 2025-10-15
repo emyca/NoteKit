@@ -78,4 +78,7 @@ dependencies {
 
     // Material Icons Extended library
     implementation(libs.androidx.icons.extended)
+
+    // SQLCipher Android
+    implementation(libs.sqlcipher.android)
 }
