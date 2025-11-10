@@ -1,4 +1,4 @@
-package com.example.notekit.home.domain.usecase
+package com.example.notekit.note_list.domain.usecase
 
 import com.example.notekit.core.domain.model.Note
 import kotlinx.coroutines.flow.Flow

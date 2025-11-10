@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.notekit.home.presentation.navigation.NOTES_ROUTE
-import com.example.notekit.home.presentation.navigation.navigateToNotesScreen
-import com.example.notekit.home.presentation.navigation.notesScreen
+import com.example.notekit.note_list.presentation.navigation.NOTES_ROUTE
+import com.example.notekit.note_list.presentation.navigation.navigateToNotesScreen
+import com.example.notekit.note_list.presentation.navigation.notesScreen
 import com.example.notekit.note_details.presentation.navigation.navigateToNoteDetailsScreen
 import com.example.notekit.note_details.presentation.navigation.noteDetailsScreen
 import com.example.notekit.save_note.presentation.navigation.SaveNoteResArg

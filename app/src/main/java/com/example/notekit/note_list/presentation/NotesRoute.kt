@@ -1,4 +1,4 @@
-package com.example.notekit.home.presentation
+package com.example.notekit.note_list.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

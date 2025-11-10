@@ -1,9 +1,9 @@
-package com.example.notekit.home.presentation
+package com.example.notekit.note_list.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notekit.core.domain.model.Note
-import com.example.notekit.home.domain.usecase.GetAllUseCase
+import com.example.notekit.note_list.domain.usecase.GetAllUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

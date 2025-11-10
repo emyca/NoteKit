@@ -1,4 +1,4 @@
-package com.example.notekit.home.presentation
+package com.example.notekit.note_list.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

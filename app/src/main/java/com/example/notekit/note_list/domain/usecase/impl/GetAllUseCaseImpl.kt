@@ -1,7 +1,7 @@
-package com.example.notekit.home.domain.usecase.impl
+package com.example.notekit.note_list.domain.usecase.impl
 
 import com.example.notekit.core.domain.repository.NoteRepository
-import com.example.notekit.home.domain.usecase.GetAllUseCase
+import com.example.notekit.note_list.domain.usecase.GetAllUseCase
 import javax.inject.Inject
 
 class GetAllUseCaseImpl @Inject constructor(

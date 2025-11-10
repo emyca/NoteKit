@@ -1,9 +1,9 @@
-package com.example.notekit.home.presentation.navigation
+package com.example.notekit.note_list.presentation.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.notekit.home.presentation.NotesRoute
+import com.example.notekit.note_list.presentation.NotesRoute
 
 const val NOTES_ROUTE = "notes_route"
 
