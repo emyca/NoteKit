@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
 android {
@@ -83,4 +84,10 @@ dependencies {
 
     // SQLCipher Android
     implementation(libs.sqlcipher.android)
+
+    // DataStore Preferences
+    implementation(libs.androidx.datastore.preferences)
+
+    // KotlinX Serialization
+    implementation(libs.kotlinx.serialization.json)
 }
